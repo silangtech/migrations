@@ -18,8 +18,6 @@ use SilangPHP\Migrate\Classes\{
 class DbHelper
 {
 
-    private static $conn = null;
-
     /**
      * Returns the correct database object based on the database configuration file.
      *
@@ -49,9 +47,6 @@ class DbHelper
      */
     public static function getPdoObj()
     {
-
-        if (!empty(self::$conn[M_METHOD_PDO])) return self::$conn[M_METHOD_PDO];
-
         $pdo_settings = array
         (
             \PDO::ATTR_PERSISTENT => true,
@@ -59,11 +54,8 @@ class DbHelper
             \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true
         );
         $db_config = $GLOBALS['db_config'];
-        $conn = new \PDO("mysql:host={$db_config->host};port={$db_config->port};dbname={$db_config->name}", $db_config->user, $db_config->pass, $pdo_settings);
+        return new \PDO("mysql:host={$db_config->host};port={$db_config->port};dbname={$db_config->name}", $db_config->user, $db_config->pass, $pdo_settings);
 
-        self::$conn[M_METHOD_PDO] = $conn;
-
-        return $conn;
     }
 
     /**
@@ -76,14 +68,8 @@ class DbHelper
     public static function getMysqliObj()
     {
 
-        if (!empty(self::$conn[M_METHOD_MYSQLI])) return self::$conn[M_METHOD_MYSQLI];
-
         $db_config = $GLOBALS['db_config'];
-        $conn = new ExceptionalMysqli($db_config->host, $db_config->user, $db_config->pass, $db_config->name, $db_config->port);
-
-        self::$conn[M_METHOD_MYSQLI] = $conn;
-
-        return $conn;
+        return new ExceptionalMysqli($db_config->host, $db_config->user, $db_config->pass, $db_config->name, $db_config->port);
     }
 
     /**
