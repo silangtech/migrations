@@ -1,0 +1,34 @@
+<?php
+
+use \SilangPHP\Migrate\Classes\{MysqliMigration,ExceptionalMysqli};
+
+
+class Migration_@@timestamp@@ extends MysqliMigration
+{
+
+	public function up(ExceptionalMysqli &$mysqli)
+	{
+/**
+        $sql = <<<SQL
+CREATE TABLE `m_test` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar (255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+SQL;
+        $mysqli->query("DROP TABLE IF EXISTS `m_test`;");
+        $mysqli->query($sql);
+        $mysqli->query("INSERT INTO `m_test` (`name`) VALUES ('name');");
+        $mysqli->query("INSERT INTO `m_test` (`name`) VALUES ('name22');");
+
+ *
+ */
+	}
+
+	public function down(ExceptionalMysqli &$mysqli)
+	{
+		
+	}
+
+}

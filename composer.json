@@ -1,0 +1,22 @@
+{
+  "name": "silangtech/migrations",
+  "description" : "数据库迁移管理",
+  "type": "application",
+  "keywords": ["SilangPHP","migrations","php framework"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shengsheng",
+      "email": "9448923@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.0"
+  },
+  "_comment": "SilangPHP/Migrations",
+  "autoload": {
+    "psr-4": {
+      "SilangPHP\\Migrate\\": "src/"
+    }
+  }
+}

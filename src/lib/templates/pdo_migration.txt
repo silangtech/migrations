@@ -1,0 +1,52 @@
+<?php
+
+use \SilangPHP\Migrate\Classes\Migration;
+
+
+class Migration_@@timestamp@@ extends Migration
+{
+
+	public function up(\PDO &$pdo)
+	{
+
+	    // What are you up to?
+
+	    /**
+        $sql = <<<SQL
+
+CREATE TABLE `m_test` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar (255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+SQL;
+
+        $st = $pdo->prepare($sql);
+        if ($st->execute())
+        {
+            $sql = "INSERT INTO `m_test` VALUES (:id, :name)";
+            $st = $pdo->prepare($sql);
+
+            $data = [
+                [1, 'xiaoli'],
+                [5, 'daohai']
+            ];
+            foreach ($data as $row) {
+                $st->execute([
+                    ':id'		 => $row[0],
+                    ':name'		 => $row[1],
+                ]);
+            }
+        }
+
+*/
+        return TRUE;
+	}
+
+	public function down(\PDO &$pdo)
+	{
+		
+	}
+
+}
